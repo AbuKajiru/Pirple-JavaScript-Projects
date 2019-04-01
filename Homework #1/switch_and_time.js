@@ -8,47 +8,137 @@ value1, label1, value2, label2
 - label1 and label2 should accept any of the following strings: "seconds", "minutes", "hours", "days", "second", "minute", "hour", "day"
 
 */
+
+// Create a function that contains and checks all the possible values of existence of the string portions of the variables
+// so that it is easier to add, retrieve and change values at will without changing the overall structure of the code. 
+var returnValue = (value) => {
+
+    switch (value) {
+        // Return values if provided.
+        case "seconds":
+            return "seconds";
+        case "minutes":
+            return "minutes";
+        case "hours":
+            return "hours";
+        case "days":
+            return "days";
+        case "second":
+            return "second";
+        case "minute":
+            return "minute";
+        case "hour":
+            return "hour";
+    
+        default:
+            // If value passed is non existent then return an error message.
+            return "Not Defined!";
+    }
+}
+
+var timeChecker = (timeValue, timeLabel) => {
+    
+    switch (timeLabel) {
+
+        case "seconds":
+            if ( (timeValue % 60) === 0 ) {
+
+                timeValue = timeValue / 60;
+                
+                if (timeValue > 1) {
+                    timeLabel = "minutes";
+                } else {
+                    timeLabel = "minute";
+                }
+
+            }
+
+            return [timeValue, timeLabel];
+        
+        case "minutes":
+            if ((timeValue % 60) === 0) {
+
+                timeValue = timeValue / 60;
+
+                if (timeValue > 1) {
+                    timeLabel = "hours";
+                } else {
+                    timeLabel = "hour";
+                }
+
+            }
+
+            return [timeValue, timeLabel];
+        
+        case "hours":
+            if ((timeValue % 24) === 0) {
+
+                timeValue = timeValue / 60;
+
+                if (timeValue > 1) {
+                    timeLabel = "days";
+                } else {
+                    timeLabel = "day";
+                }
+
+            }
+
+            return [timeValue, timeLabel];
+
+        default:
+            return [timeValue, timeLabel];
+    }
+}
+
 var timeAdder = (value1, label1, value2, label2) => {
 
-    let myTime;
+    let value3;
+    let label3;
+    let stringLength;
+    let labelOneReturn;
+    let labelTwoReturn;
 
-    if (!isNaN(value1) || !isNaN(value2)) {
+    if (!isNaN(value1) && !isNaN(value2)) { // check if number
 
-        // check label1
-        switch (label1) {
-            case "seconds":
-            case "minutes":
-            case "hours":
-            case "days":
-            case "seond":
-            case "minute":
-            case "hour":
+        labelOneReturn = returnValue(label1);
 
-                // check label2
-                switch (label2) {
-                    case "seconds":
-                    case "minutes":
-                    case "hours":
-                    case "days":
-                    case "seond":
-                    case "minute":
-                    case "hour":
-                        
-                        myTime = value1.toString() + ", " + label1 + ", " + value2.toString() + ", " + label2;
-                        return myTime;
-                        break;
-                
-                    default:
-                        return "You entered an invalid value, please enter label2 represented by either: seconds, minutes, hours, days, second, minute, hour";
-                        break;
+        if (labelOneReturn != "Not Defined!") { // check of defined amongst set of strings for label1
+            // Run normal code
+            
+            labelTwoReturn = returnValue(label2);
+
+            if (labelTwoReturn != "Not Defined!") { // check of defined amongst set of strings for label2
+                //Run normal code
+
+                if (labelOneReturn === labelTwoReturn) {
+                    // check if values are equal, if so then do direct calculations
+
+                    value3 = value1 + value2; // add the numerical values
+                    label3 = labelOneReturn; // pick one of the string values since they are equal
+
+                    stringLength = label3.length;
+
+                    if (label3.charAt(stringLength-1) != "s") {
+                        // add an "s" at the end of string to make it plural, i.e. "hours" instead of "hour".
+                        label3 += "s";
+                    }
+
+                    return timeChecker(value3, label3); //return array of two values
+
+                } else {
+                    // if values not equal then find the larger of the values and use that as main time representation
                 }
-                
-                break;
 
-            default:
-                return "You entered an invalid value, please enter label1 represented by either: seconds, minutes, hours, days, second, minute, hour";
-                break;
+
+            }else{
+                // Display Error
+                console.log("You entered an invalid value for label2!");
+            }
+        }else{
+            // Display error    
+            console.log("You entered an invalid value for label1!");
         }
+
     } else {
 
         return "You entered an invalid value, please enter a positive Integer defined by the range of values [0 - 9]";
