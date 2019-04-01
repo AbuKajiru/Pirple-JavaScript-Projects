@@ -90,6 +90,119 @@ var timeChecker = (timeValue, timeLabel) => {
     }
 }
 
+var timeChooser = (time1, timeLabel1, time2, timeLabel2) => {
+
+    let timeTotal;
+    let stringLength;
+
+    switch (timeLabel1) {
+        case "second":
+        case "seconds":
+            if (timeLabel2 === "minutes") {
+                time2 *= 60; 
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            }else if (timeLabel2 === "hours") {
+                time2 *= 3600;
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            }else if (timeLabel2 === "days") {
+                time2 *= 86400;
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            }else{
+                return "Not compatitble!";
+            }            
+        
+        case "minutes":
+        case "minute":
+            if (timeLabel2 === "hours") {
+                time2 *= 60;
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            }else if (timeLabel2 === "days") {
+                time2 *= 1440;
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            }else{
+                return "Not compatible!";
+            }
+        
+        case "hours":
+        case "hour":
+            if (timeLabel2 === "days") {
+                time2 *= 24;
+
+                timeTotal = time1 + time2;
+
+                if (timeTotal > 1) {
+                    stringLength = timeLabel1.length;
+
+                    if (timeLabel1.charAt(stringLength - 1) != "s") {
+                        timeLabel1 += "s";
+                    }
+                }
+
+                return timeChecker(timeTotal, timeLabel1);
+            } else {
+                return "Not compatible!";
+            }
+
+        default:
+            return "Not compatible!";
+    }
+}
+
 var timeAdder = (value1, label1, value2, label2) => {
 
     let value3;
@@ -127,6 +240,14 @@ var timeAdder = (value1, label1, value2, label2) => {
 
                 } else {
                     // if values not equal then find the larger of the values and use that as main time representation
+
+                    var temp = timeChooser(value1, label1, value2, label2);
+
+                    if (temp === "Not compatitble!") {
+                        return timeChooser(value2, label2, value1, label1);
+                    } else {
+                        return temp;
+                    }
                 }
 
 
