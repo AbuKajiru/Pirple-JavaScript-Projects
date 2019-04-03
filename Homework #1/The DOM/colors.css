@@ -1,0 +1,76 @@
+#rectangleWrapper{
+    height: auto;
+    padding: 50px 50px 0 50px;
+}
+
+.coloredRectangle{
+    width: 80%;
+    height: 18rem;
+    margin: 0 auto;
+    border-radius: 4rem;
+    box-sizing: border-box;
+}
+
+.cont{
+    height: 100%;
+}
+
+.cont-box{
+    width: 30%;
+    height: auto;
+    float: left;
+    margin: 2%;
+    padding: 2%;
+    text-align: center;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+}
+
+#num1{
+    background-color: #f33911;
+}
+
+#num2{
+    background-color: #e6f311;
+}
+
+#num3{
+    background-color: #90f311;
+}
+
+#num4{
+    background-color: #11f3bc;
+}
+
+#num5{
+    background-color: #7a11f3;
+}
+
+#num6{
+    background-color: #f311bb;
+}
+
+#num7{
+    background-color: #f33911;
+}
+
+#num8{
+    background-color: #f33911;
+}
+
+#num9{
+    background-color: #f33911;
+}
+
+#num10{
+    background-color: #f33911;
+}
+
+
+p{
+    padding: 4% 2% 0 2%;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-family: calibri;
+    font-weight: bold; 
+}
