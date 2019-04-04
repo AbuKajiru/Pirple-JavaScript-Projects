@@ -1,9 +1,10 @@
 # Pirple JavaScript Projects
 Hi everyone, this project is licensed under the MIT License.
 In short, it's pretty much as open source as it gets.
-Enjoy.
 
-The projects listed here will be updated periodically as I add them, please be sure to check back regulary if intereseted.
+I have had a lot of interest in JavaScript for the past one and a half years, but I never got a chance to test my skills and knowledge.
+Through Pirple.com I am able to replenish the knowledge I have and also gauge it by the tests that they provide.
 
-1. HOMEWORK #1: Using arrays, objects, variables: numbers, strings and booleans, I list out one of my favorite songs and it's attributes.
-(In order to view this data please run it on the console).
+The listed files within this project, consists of the various tests that I have done so far as well as detailed "read me" files describing what each test is all about.
+
+I hope you all enjoy.
